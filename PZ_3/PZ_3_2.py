@@ -13,8 +13,8 @@ while True:
             break
     except ValueError:
         print("Неправильно ввели")
-if (year % 4 == 0):
-    if (year % 100 == 0) and (year % 400 != 0):
+if not year % 4:
+    if not year % 100 and year % 400:
         print("В этом году 365 дней")
     else:
         print("В этом году 366 дней")

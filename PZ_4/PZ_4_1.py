@@ -16,4 +16,4 @@ b = a
 for i in range(n-1):
     a *= b
 
-print(a)
+print(f'{b} в степени {n}: {a}')
