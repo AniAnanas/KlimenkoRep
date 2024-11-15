@@ -6,7 +6,7 @@ def intcheck(x, n):
         try:
             x = int(x)
             return x
-        except:
+        except ValueError:
             print(f'Неправильно ввели {"первое" if n == 1 else "второе" if n==2 else "третье"} число!')
             x = input(f'Введите {"первое" if n == 1 else "второе" if n==2 else "третье"} число: ')
 a, b, c = input('Введите первое число: '), input('Введите второе число: '), input('Введите третье число: ')
