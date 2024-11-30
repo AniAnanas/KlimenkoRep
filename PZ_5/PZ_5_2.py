@@ -13,7 +13,7 @@ def typecheck(x, type_:type):
             x = input(f'Неправильный ввод {"целого " if type_ == int else "вещественного " if type_ == float else ""}числа!\nПовторите ввод: ')
 
 def shift_right3(A, B, C):
-    return B, C, A
+    return C, A, B
 
 a1 = typecheck(input('Введите число A1: '), float)
 b1 = typecheck(input('Введите число B1: '), float)
