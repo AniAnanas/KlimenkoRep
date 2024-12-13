@@ -24,4 +24,4 @@ N = []
 Ns = typecheck(input('Введите размер списка: '), int)
 for i in range(Ns):
     N.append(randint(1, 100))
-print(f'Число R: {R}\nНайденные соседние элементы:{find_neighbours(R, N)}')
+print(f'Число R: {R}\nНайденные соседние элементы:{find_neighbours(R, N)} в списке N:\n{N}')
