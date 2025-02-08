@@ -16,9 +16,7 @@ shops:dict[set] = {
 #1
 print('Задание 1.')
 target_books:set = {"Достоевский","Пушкин"}
-print(f'Магазины в которых можно купить книги авторов {", ".join(target_books)}: {", ".join(
-    [shop for shop, books in shops.items() if target_books.issubset(books)]
-    )}')
+print(f'Магазины в которых можно купить книги авторов {", ".join(target_books)}: {", ".join([shop for shop, books in shops.items() if target_books.issubset(books)])}')
 #2
 print('\nЗадание 2.')
 print(f"Ассортимент ДомКниги до добавления автора: {', '.join(shops['ДомКниги'])}")
@@ -26,4 +24,4 @@ shops['ДомКниги'].add("Лермонтов")
 print(f"Ассортимент ДомКниги после добавления автора: {', '.join(shops['ДомКниги'])}")
 print('\nЗадание 3.')
 #3
-print(f"Книги {shops['БукМаркет'] - shops['Магистр']} из БукМаркет отсутствуют в Магистре")
+print(f"Книги {', '.join(shops['БукМаркет'] - shops['Магистр'])} из БукМаркет отсутствуют в Магистре")
