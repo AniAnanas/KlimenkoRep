@@ -8,33 +8,28 @@
 2.в ассортимент магазина ДомКниги добавить автора Лермонтов.
 3.какие книги из магазина БукМаркет отсутствуют в магазине Магистр.
 """
-Magistr:set = {"Лермонтов", "Достоевский", "Пушкин", "Тютчев"}
-DomKnigi:set = {"Толстой", "Грибоедов", "Чехов", "Пушкин"}
-BukMarket:set = {"Пушкин", "Достоевский", "Маяковский"}
-Galereya:set = {"Чехов", "Тютчев", "Пушкин"}
-
-def var_name(obj):
-    '''Перебираем все имена в глобальном контексте и сравниваем с данным объектом,
-    возвращаем первое найденное имя, которое соответствует данному объекту.'''
-    matches = [name for name, value in globals().items() if value is obj]
-    return matches[0]
+magistr:set = {"Лермонтов", "Достоевский", "Пушкин", "Тютчев"}
+domknigi:set = {"Толстой", "Грибоедов", "Чехов", "Пушкин"}
+bukmarket:set = {"Пушкин", "Достоевский", "Маяковский"}
+galereya:set = {"Чехов", "Тютчев", "Пушкин"}
 
 #1
-print('Задание 1 - в каких магазинах можно одновременно приобрести книги Достоевского и Пушкина.')
-list_of_markets:list[set] = [Magistr, DomKnigi, BukMarket, Galereya]
-target_books:set[str] = {"Достоевский","Пушкин"}
-matched_shops:set[str] = set()
-for shop in list_of_markets:
-    if target_books.issubset(shop):
-        name_of_shop = var_name(shop)
-        matched_shops.add(name_of_shop)
-del list_of_markets, target_books
-print(matched_shops)
+target_books = {"Достоевский","Пушкин"}
+print("1. Магазины, где есть и Достоевский, и Пушкин: ", end="")
+if target_books.issubset(magistr):
+    print("Магистр", end=" ")
+if target_books.issubset(domknigi):
+    print("ДомКниги", end=" ")
+if target_books.issubset(bukmarket):
+    print("БукМаркет", end=" ")
+if target_books.issubset(galereya):
+    print("Галерея", end=" ")
+print()
 #2
-print('\n Задание 2 - в ассортимент магазина ДомКниги добавить автора Лермонтов.')
-print(f"До добавления: {DomKnigi}")
-DomKnigi.add("Лермонтов")
-print(f"После добавления: {DomKnigi}")
+print("2. ДомКниги до добавления Лермонтова:", domknigi)
+domknigi.add("Лермонтов")
+print("2. ДомКниги после добавления Лермонтова:", domknigi)
+
 #3
-print('\n Задание 3 - какие книги из магазина БукМаркет отсутствуют в магазине Магистр.')
-print(BukMarket - Magistr)
+not_in_magistr = bukmarket - magistr
+print("3. Книги из БукМаркет, отсутствующие в Магистре:", not_in_magistr)
