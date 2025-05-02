@@ -20,6 +20,7 @@ def exitProgram():
 #region Inputs
 numbersCount = 0
 targetValue = ''
+
 while numbersCount <= 0:
     try:
         numbersCount = int(input("Введите количество чисел в списке.\n> ").strip())
@@ -30,6 +31,7 @@ while numbersCount <= 0:
     except EOFError:exitProgram()
     except KeyboardInterrupt:exitProgram()
     except Exception as e: print(f"{e}\n\nПроизошла ошибка! Проверьте свой ввод целого числа.")
+    
 while type(targetValue) == str:
     try:targetValue = int(input("Введите число для поиска.\n> ").strip())
     except ValueError:
@@ -44,7 +46,7 @@ genList = (randint(-100,100) for i in range(numbersCount))
 genList, gen2Print = tee(genList)
 print("Сгенерированный список: " + ", ".join(map(str,gen2Print)))
 
-message = "Число " + targetValue + " в последовательности "
+message = "Число " + str(targetValue) + " в последовательности "
 message += "присутствует" if isNumInIter(targetValue, genList) else "отсутствует"
 print(message)
 
