@@ -1,7 +1,12 @@
+"""Вариант 13.
+В строках исходного текстового файла (dates1.txt) все даты представить в виде
+подстроки. Поместить в новый текстовый файл все даты февраля в формате
+ДД/ММ/ГГГГ.
+"""
 from os import path
 import re
 content = """01.02.2022; 02.02.2022; 03.02.2022 
-04.02.2022, 05.02.2022 
+04.02.2022, 05.02.2022 05.03.2022 05.03.2022 05.03.2022 05.03.2022 
 06.02.2022, 07.02.2022, 08.02.2022 
 09.02.2022; 
 10.02.2022; 11.02.2022; 12.02.2022, 
@@ -24,5 +29,14 @@ if (not path.exists(path2file)):
 with open(path2file) as orig:
     text = orig.read()
 
-Re = re.compile(r"\d{2}.\d{2}.\d{4}")
-print(Re.findall(text))
+Re = re.compile(r"\d{1,2}.\d{1,2}.\d{4}")
+matched_dates = Re.findall(text)
+print(matched_dates)
+
+redots = re.compile(r"\.")
+refeb = re.compile(r'\d{1,2}.(0)2.\d{1,4}')
+formated_dates = [redots.sub("/", date) for date in matched_dates if refeb.fullmatch(date) is not None]
+
+with open(path.join(path.dirname(__name__),"captured_dates.txt"), "w") as wfile:
+    wfile.write("\n".join(formated_dates))
+print(formated_dates)

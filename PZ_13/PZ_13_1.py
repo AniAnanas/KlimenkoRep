@@ -23,7 +23,7 @@ while 1:
     except ValueError: print("Неправильно введено целое число")
     except EOFError: cexit()
     except KeyboardInterrupt: cexit()
-    except Exception as e: print(e.__str__()+"\n\n\nПроизошла ошибка, проверьте свой ввод")
+    except Exception as e: print(str(e.with_traceback())+"\n\n\nПроизошла ошибка, проверьте свой ввод")
 #endregion
 
 matrixElems = 0
@@ -45,5 +45,5 @@ while 1:
 #endregion
 
 matrix = [[randint(-100,100) for elem in range(matrixElems)] for row in range(matrixRows)]
-s = [f"[{i}] {sum(line)} ({", ".join(map(str, line))})" for i, line in enumerate(matrix, 1) if i % 2 == 1]
+s = [f"[{i}] {sum(line)} ({', '.join(map(str, line))})" for i, line in enumerate(matrix, 1) if i % 2 == 1]
 print("\n".join(s))

@@ -8,6 +8,7 @@ def cexit():
     exit()
 
 matrixRows = 0
+#region Rows
 while 1:
     try:
         matrixRows = int(input("Введите кол-во строк в матрице:\n> "))
@@ -22,8 +23,10 @@ while 1:
     except KeyboardInterrupt: cexit()
     except EOFError: cexit()
     except Exception as e: print(e.__str__()+"\n\n\nПроизошла ошибка, проверьте свой ввод")
-        
+#endregion
+
 matrixElems = 0
+#region Elements
 while 1:
     try:
         matrixElems = int(input("Введите кол-во элементов в строке матрицы:\n> "))
@@ -38,10 +41,11 @@ while 1:
     except KeyboardInterrupt: cexit()
     except EOFError: cexit()
     except Exception as e: print(e.__str__()+"\n\n\nПроизошла ошибка, проверьте свой ввод")
+#endregion
 
 matrix = [[randint(-100,100) for j in range(matrixElems)] for i in range(matrixRows)]
 print("\n".join(map(str,matrix)))
- 
+
 vmax = -float("inf")
 indexes = []
 for row in matrix:
@@ -49,4 +53,4 @@ for row in matrix:
     if filt != [] and vmax < max(filt):
         vmax = max(filt)
         indexes = [matrix.index(row), row.index(max(filt))]
-print(f"Максимальный положительный элемент: {vmax}\nРасположен он в {indexes[0]+1} строке, {indexes[1]+1} столбце")
+print(f"Максимальный положительный элемент: {vmax}\nРасположен в {indexes[0]+1} строке, {indexes[1]+1} столбце")
