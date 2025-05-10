@@ -1,6 +1,5 @@
 """Вариант 13.
-1. Для каждой строки матрицы с нечетным номером найти среднее арифметическое ее элементов.
-"""
+В двумерном списке найти максимальный положительный элемент кратный 4."""
 from random import randint
 maxNum = 5
 
@@ -9,41 +8,45 @@ def cexit():
     exit()
 
 matrixRows = 0
-#region Rows
 while 1:
     try:
         matrixRows = int(input("Введите кол-во строк в матрице:\n> "))
-        if matrixRows <= 0:
-            print("Кол-во элементов должно быть больше 0.")
+        if matrixRows < 1:
+            print("Кол-во строк должно быть больше 0.")
             continue
         if matrixRows > maxNum:
             print(f"Слишком большое число! (Max: {maxNum})")
             continue
         break
     except ValueError: print("Неправильно введено целое число")
-    except EOFError: cexit()
     except KeyboardInterrupt: cexit()
+    except EOFError: cexit()
     except Exception as e: print(e.__str__()+"\n\n\nПроизошла ошибка, проверьте свой ввод")
-#endregion
-
+        
 matrixElems = 0
-#region Elements
 while 1:
     try:
         matrixElems = int(input("Введите кол-во элементов в строке матрицы:\n> "))
-        if matrixElems <= 0:
-            print("Кол-во элементов должно быть больше нуля!")
+        if matrixElems < 1:
+            print("Кол-во элементов должно быть больше 0.")
             continue
         if matrixElems > maxNum:
             print(f"Слишком большое число! (Max: {maxNum})")
             continue
         break
     except ValueError: print("Неправильно введено целое число")
-    except EOFError: cexit()
     except KeyboardInterrupt: cexit()
+    except EOFError: cexit()
     except Exception as e: print(e.__str__()+"\n\n\nПроизошла ошибка, проверьте свой ввод")
-#endregion
 
-matrix = [[randint(-100,100) for elem in range(matrixElems)] for row in range(matrixRows)]
-s = [f"[{i}] {sum(line)} ({", ".join(map(str, line))})" for i, line in enumerate(matrix, 1) if i % 2 == 1]
-print("\n".join(s))
+matrix = [[randint(-100,100) for j in range(matrixElems)] for i in range(matrixRows)]
+print("\n".join(map(str,matrix)))
+ 
+vmax = -float("inf")
+indexes = []
+for row in matrix:
+    filt = list(filter(lambda x: x%4==0, row))
+    if filt != [] and vmax < max(filt):
+        vmax = max(filt)
+        indexes = [matrix.index(row), row.index(max(filt))]
+print(f"Максимальный положительный элемент: {vmax}\nРасположен он в {indexes[0]+1} строке, {indexes[1]+1} столбце")
