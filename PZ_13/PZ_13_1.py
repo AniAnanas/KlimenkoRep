@@ -2,48 +2,45 @@
 1. Для каждой строки матрицы с нечетным номером найти среднее арифметическое ее элементов.
 """
 from random import randint
-maxNum = 5
+maxNum = 20
 
 def cexit():
     print("Bye!\r", end="")
     exit()
 
-matrixRows = 0
+def myIntInput(string:str="", maxInt:int=10):
+    while 1:
+        try:
+            var = int(input(f"Введите кол-во{string}:\n> "))
+            if var <= 0:
+                print(f"Кол-во{string} должно быть больше 0.")
+                continue
+            if var > maxInt:
+                print(f"Слишком большое число! (Max: {maxInt})")
+                continue
+            return var
+        except ValueError: print("Неправильно введено целое число")
+        except (EOFError,KeyboardInterrupt): cexit()
+        except Exception as e: print(e, "\n\n\nПроизошла ошибка, проверьте свой ввод")
+
 #region Rows
-while 1:
-    try:
-        matrixRows = int(input("Введите кол-во строк в матрице:\n> "))
-        if matrixRows <= 0:
-            print("Кол-во элементов должно быть больше 0.")
-            continue
-        if matrixRows > maxNum:
-            print(f"Слишком большое число! (Max: {maxNum})")
-            continue
-        break
-    except ValueError: print("Неправильно введено целое число")
-    except EOFError: cexit()
-    except KeyboardInterrupt: cexit()
-    except Exception as e: print(e.__str__()+"\n\n\nПроизошла ошибка, проверьте свой ввод")
+matrixRows = 0
+matrixRows = myIntInput(" строк в матрице", maxNum)
 #endregion
 
-matrixElems = 0
 #region Elements
-while 1:
-    try:
-        matrixElems = int(input("Введите кол-во элементов в строке матрицы:\n> "))
-        if matrixElems <= 0:
-            print("Кол-во элементов должно быть больше нуля!")
-            continue
-        if matrixElems > maxNum:
-            print(f"Слишком большое число! (Max: {maxNum})")
-            continue
-        break
-    except ValueError: print("Неправильно введено целое число")
-    except EOFError: cexit()
-    except KeyboardInterrupt: cexit()
-    except Exception as e: print(e.__str__()+"\n\n\nПроизошла ошибка, проверьте свой ввод")
+matrixElems = 0
+matrixElems = myIntInput(" элементов в строке матрицы", maxNum)
 #endregion
 
-matrix = [[randint(-100,100) for elem in range(matrixElems)] for row in range(matrixRows)]
-s = [f"[{i}] {sum(line)} ({", ".join(map(str, line))})" for i, line in enumerate(matrix, 1) if i % 2 == 1]
-print("\n".join(s))
+matrix = [
+    [randint(-100,100) for elem in range(matrixElems)] 
+    for row in range(matrixRows)
+]
+
+sb = [
+    f"[{i}] {sum(line)} ({', '.join( map(str, line) )})" 
+    for i, line in enumerate(matrix, 1) 
+    if i % 2 == 1
+]
+print("\n".join(sb))
