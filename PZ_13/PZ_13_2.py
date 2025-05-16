@@ -2,6 +2,8 @@
 В двумерном списке найти максимальный положительный элемент кратный 4."""
 from random import randint
 maxNum = 20
+min_range = -100
+max_range = 100
 
 def cexit():
     print("Bye!\r", end="")
@@ -32,14 +34,20 @@ matrixElems = 0
 matrixElems = myIntInput(" элементов в строке матрицы", maxNum)
 #endregion
 
-matrix = [[randint(-100,100) for j in range(matrixElems)] for i in range(matrixRows)]
-print("\n".join(map(str,matrix)))
+matrix = [[randint(min_range, max_range) for j in range(matrixElems)] for i in range(matrixRows)]
+sb = [
+    f"[{i}] Max:{max(line)} ({', '.join( map(str, line) )})" 
+    for i, line in enumerate(matrix, 1)
+]
+print("\n".join(sb))
 
 vmax = -float("inf")
 indexes = []
+
 for row in matrix:
-    filt = list(filter(lambda x: x%4==0, row))
+    filt = list(filter(lambda x: x>0 and x%4==0, row))
     if filt != [] and vmax < max(filt):
         vmax = max(filt)
         indexes = [matrix.index(row), row.index(max(filt))]
-print(f"Максимальный положительный элемент: {vmax}\nРасположен в {indexes[0]+1} строке, {indexes[1]+1} столбце")
+
+print(f"Первый максимальный положительный элемент кратный 4: {vmax}\nРасположен в {indexes[0]+1} строке, {indexes[1]+1} столбце")

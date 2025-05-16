@@ -29,17 +29,17 @@ if (not path.exists(path2file)):
 with open(path2file) as orig:
     text = orig.read()
 
-Re = re.compile(r"[0-3]?\d[.\\/][01]?\d[.\\/]\d{1,4}")
+Re = re.compile(r"[0-3]?\d[.\\/-][01]?\d[.\\/-]\d{1,4}")
 matched_dates = Re.findall(text)
 print("\n", matched_dates, "\n"*3)
 
-reFeb = re.compile(r'[0-3]?\d[.\\/]0?2[.\\/]\d{1,4}')
+reFeb = re.compile(r'.{2,3}0?2.{2,5}')
 formated_dates = [
     "/".join([
         part.zfill(2) if i < 2 else part.zfill(4) for i, part in enumerate(re.split(r'[.\\/]', date))
     ]) 
     for date in matched_dates 
-    if reFeb.fullmatch(date) is not None
+    if reFeb.fullmatch(date)
 ]
 
 with open(path.join(dirname, "captured_dates.txt"), "w") as wfile:

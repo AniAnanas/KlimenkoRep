@@ -3,9 +3,11 @@
 """
 from random import randint
 maxNum = 20
+min_range = -100
+max_range = 100
 
 def cexit():
-    print("Bye!\r", end="")
+    print("\r", end="")
     exit()
 
 def myIntInput(string:str="", maxInt:int=10):
@@ -34,12 +36,13 @@ matrixElems = myIntInput(" элементов в строке матрицы", m
 #endregion
 
 matrix = [
-    [randint(-100,100) for elem in range(matrixElems)] 
+    [randint(min_range, max_range) for elem in range(matrixElems)] 
     for row in range(matrixRows)
 ]
+print("Исходая матрица:\n"+("\n".join(map(str, matrix)))+"\n")
 
 sb = [
-    f"[{i}] {sum(line)} ({', '.join( map(str, line) )})" 
+    f"[{i}] {sum(line)}/{len(line)} = {sum(line)/len(line)} ({', '.join( map(str, line) )})" 
     for i, line in enumerate(matrix, 1) 
     if i % 2 == 1
 ]
