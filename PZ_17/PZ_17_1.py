@@ -9,8 +9,6 @@ branch_options: list[str] = ["select B1", "select B2", "select B3", "select B4"]
 degree_options: list[str] = ["select D1", "select D2", "select D3", "select D4"]
 prev_rb_var = -1
 
-degree_choice = tk.IntVar(value=-1)
-
 def focus_next(event):
     event.widget.tk_focusNext().focus()
     return "break"
@@ -36,6 +34,8 @@ def empty_obj(root,row,col):
 
 root = tk.Tk()
 root.title("Registration Details")
+
+degree_choice = tk.IntVar(value=-1)
 
 def Uniiversity():
     uni_label = tk.Label(root, text="University:")
